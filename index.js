@@ -10,7 +10,6 @@ const startGame = async (chatId) => {
     await bot.sendMessage(chatId, 'Отгадывай', gameOptions);
 }
 
-
 const start = () => {
     bot.setMyCommands([
         {command: '/start', description: 'Запустить бота'},
@@ -22,11 +21,19 @@ const start = () => {
         const chatId = msg.chat.id;
 
         if (text === '/start') {
-            await bot.sendMessage(chatId, 'https://cs12.pikabu.ru/post_img/2021/10/28/12/1635452090191517096.jpg')
-            return  bot.sendMessage(chatId, `Добро пожаловать ${msg.from.first_name}`)
+            await bot.sendSticker(chatId, 'https://tlgrm.ru/_/stickers/25d/f5a/25df5a18-cf79-4b3e-a2f1-4862771ebd1c/10.webp')
+            return  bot.sendMessage(chatId, `👋 Привет, ${msg.from.first_name} ! 
+Добро пожаловать в моего первого Telegram-бота от пользователя @ddan1il ! 
+
+Вот некоторые команды, которые ты можешь использовать:
+/start - Начало общения с ботом
+/info  -  Информация о пользователе
+/game  -  Игра "Угадай цифру"
+
+Если у тебя есть вопросы, просто напиши! 😊`)
         }
         if (text === '/info') {
-            return bot.sendMessage(chatId,  `Тебя зовут ${msg.from.first_name}, ${msg.from.last_name}`)
+            return bot.sendMessage(chatId,  `Тебя зовут ${msg.from.first_name}`)
         }
         if (text === '/game') {
             return startGame(chatId);
